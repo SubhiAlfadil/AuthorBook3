@@ -1,0 +1,55 @@
+﻿@model HomeIndexVM
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-8 offset-2 text-center">
+    <h3 class="mb-4 mt-3">Welcome To Book Management</h3>
+    <div class="col-12 row">
+        <div class="col-6">
+            <div class="alert alert-primary" role="alert">
+                <a asp-action="index" asp-controller="Author">
+                    All Authors : @Model.Authors
+                </a>
+            </div>
+            <div class="alert alert-secondary" role="alert">
+                <a asp-action="index" asp-controller="Author" asp-route-WithBooks="WithBooks">
+                    Authors With Books : @Model.AuthorsWithBooks
+                </a>
+            </div>
+            <div class="alert alert-success" role="alert">
+                <a asp-action="index" asp-controller="Author" asp-route-WithOutBooks="WithOutBooks">
+                    Authors WithOut Books : @Model.AuthorsWithOutBooks
+                </a>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="alert alert-danger" role="alert">
+                <a asp-action="index" asp-controller="BookType">
+                    All BookType : @Model.BookTypes
+                </a>
+            </div>
+            <div class="alert alert-warning" role="alert">
+                <a asp-action="index" asp-controller="BookType" asp-route-WithBooks="WithBooks">
+                    BookType With Books : @Model.BookTypesWithBooks
+                </a>
+            </div>
+            <div class="alert alert-info" role="alert">
+                <a asp-action="index" asp-controller="BookType" asp-route-WithOutBooks="WithOutBooks">
+                    BookType WithOut Books : @Model.BookTypesWithOutBooks
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 row">
+        <div class="col-12">
+            <div class="alert alert-dark" role="alert">
+                <a asp-action="index" asp-controller="Book">
+                    All Books : @Model.Books
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+

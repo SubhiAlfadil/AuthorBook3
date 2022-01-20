@@ -1,0 +1,63 @@
+﻿@model BookCreateVM
+
+@{
+    ViewData["Title"] = "Edit Book #"+@Model.book.BookId;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-3 text-center border pr-2">
+     <span class="text-center h5">Status</span> 
+    <a asp-action="Index" type="button" class="btn btn-success col-12 mt-2">Back To Books List</a>
+</div>
+<div class="col-md-9">
+    <div class="card">
+        <div class="card-header justify-content-center">
+            <h4 class="modal-title">@ViewData["Title"]</h4>
+        </div>
+        <form asp-action="Edit">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="book.BookId"/>
+            <input type="hidden" asp-for="book.CreateOn"/>
+            <div class="card-body p-3">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="book.Title" class="control-label"></label>
+                    <input asp-for="book.Title" class="form-control" />
+                    <span asp-validation-for="book.Title" class="text-danger"></span>
+                </div>
+                 <div class="form-group">
+                        <label asp-for="book.Description" class="control-label"></label>
+                        <textarea asp-for="book.Description" class="form-control" rows="4"></textarea>
+                        <span asp-validation-for="book.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="book.AuthorId" class="control-label"></label>
+                        <select asp-for="book.AuthorId" class="form-control" asp-items="@(new SelectList(Model.Authors, "AuthorId", "FullName"))">
+                            <option value="0">Please select the Author</option>
+                        </select>
+                        <span asp-validation-for="book.AuthorId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="book.BookTypeId" class="control-label"></label>
+                        <select asp-for="book.BookTypeId" class="form-control" 
+                                asp-items="@(new SelectList(Model.BookTypes, "BookTypeId", "Name"))">
+                            <option value="0">Please select the Book Type</option>
+                        </select>
+                        <span asp-validation-for="book.BookTypeId" class="text-danger"></span>
+                    </div>
+            </div>
+            <div class="card-footer text-right pr-4">
+                <a asp-action="Index"
+                   class="btn btn-outline-info mr-2">Back To List</a>
+                <button type="submit" class="btn btn-outline-success">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

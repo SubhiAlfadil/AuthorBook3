@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-header">
+    <h1 class="page-title">@ViewData["Title"]</h1>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="page-content">
+            <p>Need to get in touch? No problem! You can use our contact form to send us a message.</p>
+            <div class="support-license">
+                <ul>
+                    <li>
+                        Need a support? Check our available
+                        <a href="https://bootstrapmade.com/support/">support options</a>
+                    </li>
+                    <li>
+                        Want to remove the back links to BootstrapMade? Check our available
+                        <a href="https://bootstrapmade.com/license/">licensing options</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <form class="contact-form php-email-form mb-4" role="form"
+              action="https://bootstrapmade.com/contact/submit/" method="POST">
+            <div class="row">
+                <div class="form-group d-none">
+                    <input type="text" class="form-control" name="first_name" value="">
+                    <div class="validate"></div>
+                </div><div class="form-group col-md-6">
+                    <input type="name" name="name" class="form-control" id="contact-name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars"><div class="validate"></div>
+                </div><div class="form-group col-md-6"> <input type="text" name="email" class="form-control" id="contact-email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email"><div class="validate"></div></div>
+            </div><div class="row">
+                <div class="form-group col-md-12">
+                    <input type="text" name="subject" class="form-control" id="contact-subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                    <div class="validate"></div>
+                </div>
+                <div class="form-group col-md-12">
+                    <textarea class="form-control" name="message" id="contact-message" placeholder="Your Message" rows="5" data-rule="required" data-msg="Please write something for us"></textarea>
+                    <div class="validate"></div>
+                </div>
+                <div class="col-md-12">
+                    <div class="validate"></div> <span class="checkmark"></span> </label>
+                </div>
+                <div class="col-md-12">
+                    <div class="loading"></div><div class="error-message"></div>
+                </div>
+                <div class="form-send col-md-12">
+                    <button type="submit" class="btn btn-success">Send Message</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
