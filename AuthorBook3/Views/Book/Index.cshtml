@@ -1,0 +1,147 @@
+﻿@using AuthorBook3.Models.Others
+@model IEnumerable<Book>
+
+@{
+    ViewData["Title"] = "Books List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in' tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-3 text-center border pr-2 pt-3">
+    <span class="text-center h5">Status</span> 
+    <a asp-action="Index" type="button" class="btn btn-success col-12 mt-2">@ViewData["Title"]</a>
+    <div class="card mt-3" role="alert">
+        <div class="card-title">Year</div>
+        @foreach (var item in (List<YearVM>)ViewBag.yearList)
+        {
+            var active = "rounded";
+            if (ViewBag.currentYear == int.Parse(item.Name))
+            {
+                active = "active alert-success ";
+            }
+            <div class='mb-n3 offset-1 col-10 @active border'>
+                <a class="col-12 row pl-0 row" asp-action="Index"
+               asp-action="Index" asp-route-currentYear="@item.Name">
+                    <span class="col-6 h5">
+                        @item.Name
+                    </span>
+                    <span class="offset-3 col-2">
+                      <span class="badge badge-light">@item.Count</span>
+                    </span>
+                </a>
+            </div>
+            <br />
+        }
+    </div>
+    <div class="card mt-3 mb-3" role="alert">
+        <div class="card-title">Month</div>
+        @foreach (var item in (List<MonthVM>)ViewBag.monthList)
+        {
+            var active = "rounded";
+            if (ViewBag.currentMonth == int.Parse(item.Name))
+            {
+                active = "active alert-success ";
+            }
+            <div class='mb-n3 offset-1 col-10 @active border'>
+                <a class="col-12 row pl-0 row" asp-action="Index"
+               asp-action="Index" asp-route-currentYear="@ViewBag.currentYear" asp-route-currentMonth="@item.Name">
+                    <span class="col-6 h5">
+                        @item.Name
+                    </span>
+                    <span class="offset-3 col-2">
+                      <span class="badge badge-light">@item.Count</span>
+                    </span>
+                </a>
+            </div>
+            <br />
+        }
+    </div>
+</div>
+<div class="col-md-9">
+    <div class="col-12 row mb-2">
+        <span class="col-9 h3">@ViewData["Title"]</span>
+        <span class="col-3">
+            <a asp-action="Create" class="btn btn-success">Create New Book</a>
+        </span>
+        <br />
+    </div>
+    @if (Model.Any()) { 
+    <table class="table table-bordered mt-4 table-striped">
+        <thead>
+            <tr>
+                <th class="text-center" style="width:27%">Op.</th>
+                <th class="">
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AuthorId)
+                </th>
+                <th>
+                   @Html.DisplayNameFor(model => model.BookTypeId)
+                </th>
+                <th>
+                     @Html.DisplayNameFor(model => model.CreateOn)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">
+                        <a asp-action="Edit" class="btn btn-sm btn-outline-success mr-1" asp-route-id="@item.BookId">
+                            Edit
+                        </a>
+                        <a asp-action="Delete" class="btn btn-sm btn-outline-danger mr-1" asp-route-id="@item.BookId">
+                            Delete
+                        </a>
+                        <a asp-action="Details" class="btn btn-sm btn-outline-info" asp-route-id="@item.BookId">
+                            View
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @item.Author.FullName
+                    </td>
+                    <td>
+                        @item.BookType.Name
+                    </td>
+                    <td>
+                        @item.CreateOn.ToShortDateString()
+                    </td>
+                </tr>
+            }
+        </tbody>
+        </table>
+    }
+    else
+    {
+       <div class="alert alert-danger">
+           No result Found ...
+       </div>
+    }
+</div>
+
+@*@section Scripts {
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }*@
+

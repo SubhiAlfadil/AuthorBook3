@@ -1,0 +1,109 @@
+﻿@{
+    var actionName = ViewContext.RouteData.Values["action"].ToString().ToLower();
+    var controllerName = ViewContext.RouteData.Values["Controller"].ToString().ToLower();
+    var active = "active alert-primary rounded ";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/lib/fontawesome-iconpicker/css/fontawesome-iconpicker.css" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AuthorBook3</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @if(controllerName=="home"&&actionName=="index"){
+                            @active
+}" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @if(controllerName=="author"){
+                            @active
+}" asp-area="" asp-controller="Author" asp-action="Index">Authors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @if(controllerName=="book"){
+                            @active
+}" asp-area="" asp-controller="Book" asp-action="Index">Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @if(controllerName=="booktype"){
+                            @active
+}" asp-area="" asp-controller="BookType" asp-action="Index">Book Type</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @if(controllerName=="home"&&actionName=="privacy"){
+                            @active
+}" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @if(controllerName=="home"&&actionName=="contact"){
+                            @active
+}" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @if(controllerName=="home"&&actionName=="needhelp"){
+                            @active
+}" asp-area="" asp-controller="Home" asp-action="NeedHelp">
+                                Need Help?
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @if(controllerName=="home"&&actionName=="about"){
+                            @active
+}" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @if(controllerName=="home"&&actionName=="tools"){
+                            @active
+}" asp-area="" asp-controller="Home" asp-action="Tools">Tools</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @if(controllerName=="home"&&actionName=="screenshots"){
+                            @active
+}" asp-area="" asp-controller="Home" asp-action="ScreenShots">ScreenShots</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3 row">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            2022 - © Copyright 
+            <a asp-area="" asp-controller="Home" asp-action="About">Subhi Alfadil</a>
+            . All Rights Reserved - 
+            <a asp-area="" asp-controller="Home" asp-action="About">About me</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/fontawesome-iconpicker/js/fontawesome-iconpicker.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

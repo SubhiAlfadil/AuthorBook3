@@ -1,0 +1,62 @@
+﻿@model Book
+
+@{
+    ViewData["Title"] = "Book #" + @Model.BookId;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-3 text-center border pr-2">
+    <span class="text-center h5">Status</span>
+    <a asp-action="Index" type="button" class="btn btn-success col-12 mt-2">Back To Books List</a>
+</div>
+<div class="col-md-9">
+    <div class="card">
+        <div class="card-header justify-content-center ">
+            <H4 class="modal-title">@ViewData["Title"]</H4>
+        </div>
+        <div class="card-body">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="BookId" class="control-label "></label>
+                    <input asp-for="BookId" class="form-control" readonly="readonly" />
+                    @*<span asp-validation-for="BookId" class="text-danger"></span>*@
+                </div>
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" readonly="readonly" />
+                    @*<span asp-validation-for="Title" class="text-danger"></span>*@
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <textarea asp-for="Description" class="form-control" readonly="readonly" rows="4"></textarea>
+                    @*<span asp-validation-for="Description" class="text-danger"></span>*@
+                </div>
+                <div class="form-group">
+                    <label asp-for="CreateOn" class="control-label"></label>
+                    <input asp-for="CreateOn" class="form-control" readonly="readonly" />
+                    @*<span asp-validation-for="CreateOn" class="text-danger"></span>*@
+                </div>
+                <div class="form-group">
+                    <label asp-for="AuthorId" class="control-label"></label>
+                    <input asp-for="Author.FullName" class="form-control" readonly="readonly" />
+                    @*<span asp-validation-for="AuthorId" class="text-danger"></span>*@
+                </div>
+                <div class="form-group">
+                    <label asp-for="BookTypeId" class="control-label"></label>
+                    <input asp-for="BookType.Name" class="form-control" readonly="readonly" />
+                    @* <span asp-validation-for="BookTypeId" class="text-danger"></span>*@
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center pr-4">
+            <a asp-action="Edit" class="btn btn-sm btn-outline-success mr-1" asp-route-id="@Model.BookId">
+                Edit
+            </a>
+            <a asp-action="Index"
+               class="btn btn-outline-info mr-2">Back To List</a>
+            <a asp-action="Download" asp-route-id="@Model.BookId" type="button" class="btn btn-success">
+                Download This Book
+            </a>
+        </div>
+    </div>
+</div>

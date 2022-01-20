@@ -1,0 +1,91 @@
+﻿@model BookCreateVM
+
+@{
+    ViewData["Title"] = "Create a Book";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-3 text-center border pr-2">
+    <span class="text-center h5">Status</span>
+    <a asp-action="Index" type="button" class="btn btn-success col-12 mt-2">Back To Books List</a>
+</div>
+<div class="col-md-9">
+    <div class="card">
+        <div class="card-header justify-content-center">
+            <h4 class="modal-title">@ViewData["Title"]</h4>
+        </div>
+        <form asp-action="Create" enctype="multipart/form-data" id="form">
+            @Html.AntiForgeryToken()
+            <div class="card-body">
+                <div class="col-md-12">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="book.Title" class="control-label"></label>
+                        <input asp-for="book.Title" class="form-control " />
+                        <span asp-validation-for="book.Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="book.Description" class="control-label"></label>
+                        <textarea asp-for="book.Description" class="form-control" rows="4"></textarea>
+                        <span asp-validation-for="book.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NewBookFile" class="control-label"></label>
+                        <div class="custom-file">
+                            <input asp-for="NewBookFile" class="custom-file-input" />
+                            <label class="custom-file-label" for="ProfileImage">Choose PDF file</label>
+                        </div>
+                        <span asp-validation-for="NewBookFile" class="text-danger"></span>
+                        <label id="NewBookFiletext" class="control-label text-danger d-none">Please select PDF File</label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="book.AuthorId" class="control-label"></label>
+                        <select asp-for="book.AuthorId" class="form-control" asp-items="@(new SelectList(Model.Authors, "AuthorId", "FullName"))">
+                            <option value="0">Please select the Author</option>
+                        </select>
+                        <span asp-validation-for="book.AuthorId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="book.BookTypeId" class="control-label"></label>
+                        <select asp-for="book.BookTypeId" class="form-control"
+                                asp-items="@(new SelectList(Model.BookTypes, "BookTypeId", "Name"))">
+                            <option value="0">Please select the Book Type</option>
+                        </select>
+                        <span asp-validation-for="book.BookTypeId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-right pr-4">
+                <a asp-controller="Book" asp-action="Index"
+                   class="btn btn-outline-info mr-2">Back To List</a>
+                <button type="button" class="btn btn-outline-success" id="Save">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+<script type="text/javascript">
+
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+
+    $('#Save').click(function(){
+        var text=$('input#NewBookFile').val();
+        var index=text.indexOf(".");
+        index=index+1;
+        var index2=index+3;
+        var extent = text.substring(index,index2);
+        if(extent == "pdf"){
+            $('Label#NewBookFiletext').addClass("d-none");
+            $('#form').submit();
+        }
+        else{
+            $('Label#NewBookFiletext').removeClass("d-none");
+        }
+    });
+</script>
+}  
