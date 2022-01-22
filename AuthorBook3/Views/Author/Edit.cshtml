@@ -14,7 +14,7 @@
         <div class="card-header justify-content-center">
             <h4 class="modal-title">@ViewData["Title"]</h4>
         </div>
-        <form asp-action="Edit"  enctype="multipart/form-data">
+        <form asp-action="Edit" enctype="multipart/form-data" id="form">
             @Html.AntiForgeryToken()
             <input type="hidden" asp-for="AuthorId" />
             <input type="hidden" asp-for="CreateOn" />
@@ -32,14 +32,14 @@
                          height="100" width="100"
                          asp-append-version="true" />
                 </div>
-               <div class="form-group">
-                        <label asp-for="NewProfileImage" class="control-label"></label>
-                        <div class="custom-file">
-                            <input asp-for="NewProfileImage" class="custom-file-input" />
-                            <label class="custom-file-label" for="ProfileImage">Choose file</label>
-                        </div>
-                        <span asp-validation-for="NewProfileImage" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="NewProfileImage" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="NewProfileImage" class="custom-file-input" />
+                        <label class="custom-file-label" for="ProfileImage">Choose Image file</label>
                     </div>
+                    <label id="NewAuthorFiletext" class="control-label text-danger d-none">Please select Image File with extend PNG or JPG</label>
+                </div>
                 <div class="form-group">
                     <label asp-for="BirthDate" class="control-label"></label>
                     <input asp-for="BirthDate" class="form-control " />
@@ -59,11 +59,12 @@
             <div class="card-footer text-right pr-4">
                 <a asp-controller="Author" asp-action="Index"
                    class="btn btn-outline-info mr-2">Back To List</a>
-                <button type="submit" class="btn btn-outline-success">Save</button>
+                <button type="button" class="btn btn-outline-success" id="Save">Save</button>
             </div>
         </form>
     </div>
 </div>
+
 
 
 
@@ -75,5 +76,23 @@
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
+
+
+    $('#Save').click(function(){
+        var text=$('input#NewProfileImage').val();
+        var index=text.indexOf(".");
+        index=index+1;
+        var index2=index+3;
+        var extent = text.substring(index,index2)/*.toUpperCase()*/;
+        //if(extent == "PNG" || extent == "GIF"|| extent == "BMP"|| extent == "png"|| extent == "JPEG"|| extent == "JPG"|| extent == "TIFF"|| extent == "RAW"){
+        if(extent == "png" || extent == "jpg")  {
+        $('Label#NewAuthorFiletext').addClass("d-none");
+            $('#form').submit();
+        }
+        else{
+            $('Label#NewAuthorFiletext').removeClass("d-none");
+        }
+    });
+
 </script>
-}  
+}
