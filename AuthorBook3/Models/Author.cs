@@ -10,10 +10,10 @@ namespace AuthorBook3.Models
         {
             Books = new HashSet<Book>();
         }
-        [Display(Name="Author No.")]
+        [Display(Name = "Author No.")]
         public int AuthorId { get; set; }
         [Required]
-        [Display(Name="Author Name")]
+        [Display(Name = "Author Name")]
         public string FullName { get; set; }
         [Required]
 

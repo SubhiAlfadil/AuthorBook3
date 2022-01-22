@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Subhi\\source\\repos\\AuthorBook3\\AuthorBook3\\AuthorBook3.csproj": {}
+    "C:\\Users\\Subhi\\OneDrive\\Desktop\\Asp.Net\\My Projects\\AuthorBook3\\AuthorBook3\\AuthorBook3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Subhi\\source\\repos\\AuthorBook3\\AuthorBook3\\AuthorBook3.csproj": {
+    "C:\\Users\\Subhi\\OneDrive\\Desktop\\Asp.Net\\My Projects\\AuthorBook3\\AuthorBook3\\AuthorBook3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Subhi\\source\\repos\\AuthorBook3\\AuthorBook3\\AuthorBook3.csproj",
+        "projectUniqueName": "C:\\Users\\Subhi\\OneDrive\\Desktop\\Asp.Net\\My Projects\\AuthorBook3\\AuthorBook3\\AuthorBook3.csproj",
         "projectName": "AuthorBook3",
-        "projectPath": "C:\\Users\\Subhi\\source\\repos\\AuthorBook3\\AuthorBook3\\AuthorBook3.csproj",
+        "projectPath": "C:\\Users\\Subhi\\OneDrive\\Desktop\\Asp.Net\\My Projects\\AuthorBook3\\AuthorBook3\\AuthorBook3.csproj",
         "packagesPath": "C:\\Users\\Subhi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Subhi\\source\\repos\\AuthorBook3\\AuthorBook3\\obj\\",
+        "outputPath": "C:\\Users\\Subhi\\OneDrive\\Desktop\\Asp.Net\\My Projects\\AuthorBook3\\AuthorBook3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Subhi\\AppData\\Roaming\\NuGet\\NuGet.Config",
